@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang=”en” xmlns:th=”www.thymeleaf.org”>
+
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+
+<body>
+<h2>Director Listing</h2>
+<a th:href="@{/newdirector}"><button>Add Director</button></a>
+<a th:href="@{/newmovie}"><button>Add Movie</button></a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Movies</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="director : ${alldirectors}">
+            <td th:text="${director.name}"></td>
+            <td th:inline="text">[[${director.genre}]]</td>
+            <td>
+                <ul>
+                    <div th:each="movie : ${director.movies}">
+                        <li th:inline="text">[[${movie.title}]] released in [[${movie.year}]]</li>
+                    </div>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+</body>
+</html>
